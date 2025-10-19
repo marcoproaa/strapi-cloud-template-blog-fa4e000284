@@ -1,15 +1,23 @@
 {
   "collectionName": "components_shared_media",
   "info": {
-    "displayName": "Media",
+    "displayName": "media_image",
     "icon": "file-video"
   },
   "options": {},
   "attributes": {
-    "file": {
-      "allowedTypes": ["images", "files", "videos"],
+    "image": {
       "type": "media",
-      "multiple": false
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "alt": {
+      "type": "text",
+      "maxLength": 120
     }
   }
 }

@@ -1,0 +1,92 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bookmakers",
+  "info": {
+    "singularName": "bookmaker",
+    "pluralName": "bookmakers",
+    "displayName": "bookmaker"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "rating": {
+      "type": "integer",
+      "required": true,
+      "min": 0,
+      "max": 5
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "main_offer": {
+      "type": "text"
+    },
+    "secondary_text": {
+      "type": "text"
+    },
+    "notes_tc": {
+      "type": "text"
+    },
+    "affiliate_link": {
+      "type": "string",
+      "required": true
+    },
+    "review_link": {
+      "type": "string"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "new": {
+      "type": "boolean",
+      "default": false
+    },
+    "ios_app": {
+      "type": "boolean",
+      "default": false
+    },
+    "android_app": {
+      "type": "boolean",
+      "default": false
+    },
+    "live_betting": {
+      "type": "boolean",
+      "default": false
+    },
+    "cashout": {
+      "type": "boolean",
+      "default": false
+    },
+    "streaming": {
+      "type": "boolean",
+      "default": false
+    },
+    "seo": {
+      "type": "component",
+      "component": "shared.seo",
+      "repeatable": false
+    }
+  }
+}
