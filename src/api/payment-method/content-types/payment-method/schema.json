@@ -36,6 +36,12 @@
         "billetera dijital",
         "banco"
       ]
+    },
+    "bookmakers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::bookmaker.bookmaker",
+      "mappedBy": "payment_methods"
     }
   }
 }

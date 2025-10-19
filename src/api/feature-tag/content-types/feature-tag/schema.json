@@ -31,6 +31,12 @@
     "description": {
       "type": "text",
       "maxLength": 150
+    },
+    "bookmakers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::bookmaker.bookmaker",
+      "mappedBy": "feature_tags"
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_rules_bookmaker_filters",
+  "info": {
+    "displayName": "bookmaker_filter"
+  },
+  "options": {},
+  "attributes": {
+    "country_code": {
+      "type": "string",
+      "regex": "^[a-z]{2}$"
+    },
+    "min_rating": {
+      "type": "decimal",
+      "min": 0,
+      "max": 10
+    }
+  },
+  "config": {}
+}

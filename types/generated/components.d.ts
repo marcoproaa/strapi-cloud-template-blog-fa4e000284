@@ -32,6 +32,24 @@ export interface ListsListEntry extends Struct.ComponentSchema {
   };
 }
 
+export interface RulesBookmakerFilter extends Struct.ComponentSchema {
+  collectionName: 'components_rules_bookmaker_filters';
+  info: {
+    displayName: 'bookmaker_filter';
+  };
+  attributes: {
+    country_code: Schema.Attribute.String;
+    min_rating: Schema.Attribute.Decimal &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 10;
+          min: 0;
+        },
+        number
+      >;
+  };
+}
+
 export interface SharedMedia extends Struct.ComponentSchema {
   collectionName: 'components_shared_media';
   info: {
@@ -106,6 +124,7 @@ declare module '@strapi/strapi' {
     export interface ComponentSchemas {
       'faq.faq-item': FaqFaqItem;
       'lists.list-entry': ListsListEntry;
+      'rules.bookmaker-filter': RulesBookmakerFilter;
       'shared.media': SharedMedia;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;

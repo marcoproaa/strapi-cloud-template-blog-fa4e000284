@@ -491,6 +491,11 @@ export interface ApiBookmakerBookmaker extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    faq: Schema.Attribute.Component<'faq.faq-item', true>;
+    feature_tags: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::feature-tag.feature-tag'
+    >;
     featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     ios_app: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     live_betting: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -508,12 +513,16 @@ export interface ApiBookmakerBookmaker extends Struct.CollectionTypeSchema {
       Schema.Attribute.Unique;
     new: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     notes_tc: Schema.Attribute.Text;
+    payment_methods: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::payment-method.payment-method'
+    >;
     publishedAt: Schema.Attribute.DateTime;
-    rating: Schema.Attribute.Integer &
+    rating: Schema.Attribute.Decimal &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMax<
         {
-          max: 5;
+          max: 10;
           min: 0;
         },
         number
@@ -573,6 +582,10 @@ export interface ApiFeatureTagFeatureTag extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    bookmakers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::bookmaker.bookmaker'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -642,6 +655,10 @@ export interface ApiPaymentMethodPaymentMethod
     draftAndPublish: true;
   };
   attributes: {
+    bookmakers: Schema.Attribute.Relation<
+      'manyToMany',
+      'api::bookmaker.bookmaker'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

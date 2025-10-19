@@ -31,10 +31,10 @@
       ]
     },
     "rating": {
-      "type": "integer",
+      "type": "decimal",
       "required": true,
       "min": 0,
-      "max": 5
+      "max": 10
     },
     "short_description": {
       "type": "text"
@@ -83,10 +83,27 @@
       "type": "boolean",
       "default": false
     },
+    "faq": {
+      "type": "component",
+      "component": "faq.faq-item",
+      "repeatable": true
+    },
     "seo": {
       "type": "component",
       "component": "shared.seo",
       "repeatable": false
+    },
+    "payment_methods": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::payment-method.payment-method",
+      "inversedBy": "bookmakers"
+    },
+    "feature_tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::feature-tag.feature-tag",
+      "inversedBy": "bookmakers"
     }
   }
 }
