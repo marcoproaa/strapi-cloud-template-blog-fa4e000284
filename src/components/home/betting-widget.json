@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_home_betting_widgets",
+  "info": {
+    "displayName": "betting_widget"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Mejores Casas de Apuestas"
+    },
+    "source_list": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::list.list"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 5,
+      "max": 3
+    },
+    "show_global_cta": {
+      "type": "boolean",
+      "default": true
+    },
+    "global_cta_label": {
+      "type": "string",
+      "default": "Ver todas"
+    },
+    "global_cta_url": {
+      "type": "string",
+      "default": "/casas-de-apuestas"
+    },
+    "notes_smallprint": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

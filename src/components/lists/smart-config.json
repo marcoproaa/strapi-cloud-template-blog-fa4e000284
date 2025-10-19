@@ -1,0 +1,35 @@
+{
+  "collectionName": "components_lists_smart_configs",
+  "info": {
+    "displayName": "smart_config"
+  },
+  "options": {},
+  "attributes": {
+    "filter": {
+      "type": "component",
+      "component": "rules.bookmaker-filter",
+      "repeatable": false,
+      "required": true
+    },
+    "limit": {
+      "type": "integer",
+      "default": 10
+    },
+    "sort": {
+      "type": "enumeration",
+      "enum": [
+        "rating_desc",
+        "name_asc",
+        "created_desc"
+      ]
+    },
+    "respect_pinned_from_manual": {
+      "type": "boolean",
+      "default": true
+    },
+    "default_offer_prefix": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

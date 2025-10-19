@@ -11,6 +11,126 @@ export interface FaqFaqItem extends Struct.ComponentSchema {
   };
 }
 
+export interface HomeArticleStrip extends Struct.ComponentSchema {
+  collectionName: 'components_home_article_strips';
+  info: {
+    displayName: 'article_strip';
+  };
+  attributes: {
+    auto_content_type: Schema.Attribute.Enumeration<['news', 'guide']>;
+    auto_limit: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<3>;
+    auto_sort: Schema.Attribute.Enumeration<['date_desc', 'date_asc']>;
+    auto_tags: Schema.Attribute.String;
+    items: Schema.Attribute.Component<'home.article-teaser', true>;
+    mode: Schema.Attribute.Enumeration<['manual', 'auto']>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HomeArticleTeaser extends Struct.ComponentSchema {
+  collectionName: 'components_home_article_teasers';
+  info: {
+    displayName: 'article_teaser';
+  };
+  attributes: {
+    guide: Schema.Attribute.Relation<'oneToOne', 'api::guide.guide'>;
+    link_override: Schema.Attribute.String;
+    media_override: Schema.Attribute.Component<'shared.media', false>;
+    news: Schema.Attribute.Relation<'oneToOne', 'api::new.new'>;
+    title_override: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['news', 'guide', 'custom']>;
+  };
+}
+
+export interface HomeBettingWidget extends Struct.ComponentSchema {
+  collectionName: 'components_home_betting_widgets';
+  info: {
+    displayName: 'betting_widget';
+  };
+  attributes: {
+    global_cta_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Ver todas'>;
+    global_cta_url: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'/casas-de-apuestas'>;
+    limit: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 3;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<5>;
+    notes_smallprint: Schema.Attribute.Text;
+    show_global_cta: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    source_list: Schema.Attribute.Relation<'oneToOne', 'api::list.list'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Mejores Casas de Apuestas'>;
+  };
+}
+
+export interface HomeCtaBanner extends Struct.ComponentSchema {
+  collectionName: 'components_home_cta_banners';
+  info: {
+    displayName: 'cta_banner';
+  };
+  attributes: {
+    button_label: Schema.Attribute.String;
+    button_url: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images'>;
+    text: Schema.Attribute.Text;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HomeSpotlightCard extends Struct.ComponentSchema {
+  collectionName: 'components_home_spotlight_cards';
+  info: {
+    displayName: 'spotlight_card';
+  };
+  attributes: {
+    badge: Schema.Attribute.String;
+    guide: Schema.Attribute.Relation<'oneToOne', 'api::guide.guide'>;
+    link_override: Schema.Attribute.String;
+    media_override: Schema.Attribute.Component<'shared.media', false>;
+    news: Schema.Attribute.Relation<'oneToOne', 'api::new.new'>;
+    subtitle_override: Schema.Attribute.Text;
+    title_override: Schema.Attribute.String;
+    type: Schema.Attribute.Enumeration<['news', 'guide', 'custom']> &
+      Schema.Attribute.DefaultTo<'news'>;
+  };
+}
+
+export interface HomeToolItem extends Struct.ComponentSchema {
+  collectionName: 'components_home_tool_items';
+  info: {
+    displayName: 'tool_item';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    icon: Schema.Attribute.Media<'images'>;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface HomeToolsGrid extends Struct.ComponentSchema {
+  collectionName: 'components_home_tools_grids';
+  info: {
+    displayName: 'tools_grid';
+  };
+  attributes: {
+    items: Schema.Attribute.Component<'home.tool-item', true> &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 export interface ListsListEntry extends Struct.ComponentSchema {
   collectionName: 'components_lists_list_entries';
   info: {
@@ -32,13 +152,39 @@ export interface ListsListEntry extends Struct.ComponentSchema {
   };
 }
 
+export interface ListsSmartConfig extends Struct.ComponentSchema {
+  collectionName: 'components_lists_smart_configs';
+  info: {
+    displayName: 'smart_config';
+  };
+  attributes: {
+    default_offer_prefix: Schema.Attribute.String;
+    filter: Schema.Attribute.Component<'rules.bookmaker-filter', false> &
+      Schema.Attribute.Required;
+    limit: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<10>;
+    respect_pinned_from_manual: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    sort: Schema.Attribute.Enumeration<
+      ['rating_desc', 'name_asc', 'created_desc']
+    >;
+  };
+}
+
 export interface RulesBookmakerFilter extends Struct.ComponentSchema {
   collectionName: 'components_rules_bookmaker_filters';
   info: {
     displayName: 'bookmaker_filter';
   };
   attributes: {
+    any_of_features: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-tag.feature-tag'
+    >;
     country_code: Schema.Attribute.String;
+    has_android_app: Schema.Attribute.Boolean;
+    has_cashout: Schema.Attribute.Boolean;
+    has_ios_app: Schema.Attribute.Boolean;
+    has_live_betting: Schema.Attribute.Boolean;
     min_rating: Schema.Attribute.Decimal &
       Schema.Attribute.SetMinMax<
         {
@@ -47,6 +193,14 @@ export interface RulesBookmakerFilter extends Struct.ComponentSchema {
         },
         number
       >;
+    must_have_features: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feature-tag.feature-tag'
+    >;
+    payment_methods_any: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::payment-method.payment-method'
+    >;
   };
 }
 
@@ -63,30 +217,6 @@ export interface SharedMedia extends Struct.ComponentSchema {
       }>;
     image: Schema.Attribute.Media<'images' | 'files'> &
       Schema.Attribute.Required;
-  };
-}
-
-export interface SharedQuote extends Struct.ComponentSchema {
-  collectionName: 'components_shared_quotes';
-  info: {
-    displayName: 'Quote';
-    icon: 'indent';
-  };
-  attributes: {
-    body: Schema.Attribute.Text;
-    title: Schema.Attribute.String;
-  };
-}
-
-export interface SharedRichText extends Struct.ComponentSchema {
-  collectionName: 'components_shared_rich_texts';
-  info: {
-    description: '';
-    displayName: 'Rich text';
-    icon: 'align-justify';
-  };
-  attributes: {
-    body: Schema.Attribute.RichText;
   };
 }
 
@@ -107,29 +237,22 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
-export interface SharedSlider extends Struct.ComponentSchema {
-  collectionName: 'components_shared_sliders';
-  info: {
-    description: '';
-    displayName: 'Slider';
-    icon: 'address-book';
-  };
-  attributes: {
-    files: Schema.Attribute.Media<'images', true>;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'faq.faq-item': FaqFaqItem;
+      'home.article-strip': HomeArticleStrip;
+      'home.article-teaser': HomeArticleTeaser;
+      'home.betting-widget': HomeBettingWidget;
+      'home.cta-banner': HomeCtaBanner;
+      'home.spotlight-card': HomeSpotlightCard;
+      'home.tool-item': HomeToolItem;
+      'home.tools-grid': HomeToolsGrid;
       'lists.list-entry': ListsListEntry;
+      'lists.smart-config': ListsSmartConfig;
       'rules.bookmaker-filter': RulesBookmakerFilter;
       'shared.media': SharedMedia;
-      'shared.quote': SharedQuote;
-      'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
-      'shared.slider': SharedSlider;
     }
   }
 }

@@ -13,6 +13,33 @@
       "type": "decimal",
       "min": 0,
       "max": 10
+    },
+    "must_have_features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feature-tag.feature-tag"
+    },
+    "any_of_features": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feature-tag.feature-tag"
+    },
+    "payment_methods_any": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::payment-method.payment-method"
+    },
+    "has_ios_app": {
+      "type": "boolean"
+    },
+    "has_android_app": {
+      "type": "boolean"
+    },
+    "has_live_betting": {
+      "type": "boolean"
+    },
+    "has_cashout": {
+      "type": "boolean"
     }
   },
   "config": {}

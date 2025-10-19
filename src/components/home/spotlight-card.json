@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_home_spotlight_cards",
+  "info": {
+    "displayName": "spotlight_card"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "default": "news",
+      "enum": [
+        "news",
+        "guide",
+        "custom"
+      ]
+    },
+    "news": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::new.new"
+    },
+    "guide": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::guide.guide"
+    },
+    "title_override": {
+      "type": "string"
+    },
+    "subtitle_override": {
+      "type": "text"
+    },
+    "media_override": {
+      "type": "component",
+      "component": "shared.media",
+      "repeatable": false
+    },
+    "link_override": {
+      "type": "string"
+    },
+    "badge": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

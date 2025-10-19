@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_home_article_teasers",
+  "info": {
+    "displayName": "article_teaser"
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "guide",
+        "custom"
+      ]
+    },
+    "news": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::new.new"
+    },
+    "guide": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::guide.guide"
+    },
+    "title_override": {
+      "type": "string"
+    },
+    "media_override": {
+      "type": "component",
+      "component": "shared.media",
+      "repeatable": false
+    },
+    "link_override": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

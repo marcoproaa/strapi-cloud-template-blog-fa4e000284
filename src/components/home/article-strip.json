@@ -1,0 +1,47 @@
+{
+  "collectionName": "components_home_article_strips",
+  "info": {
+    "displayName": "article_strip"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "mode": {
+      "type": "enumeration",
+      "enum": [
+        "manual",
+        "auto"
+      ]
+    },
+    "items": {
+      "type": "component",
+      "component": "home.article-teaser",
+      "repeatable": true
+    },
+    "auto_content_type": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "guide"
+      ]
+    },
+    "auto_tags": {
+      "type": "string"
+    },
+    "auto_limit": {
+      "type": "integer",
+      "default": 3
+    },
+    "auto_sort": {
+      "type": "enumeration",
+      "enum": [
+        "date_desc",
+        "date_asc"
+      ]
+    }
+  },
+  "config": {}
+}

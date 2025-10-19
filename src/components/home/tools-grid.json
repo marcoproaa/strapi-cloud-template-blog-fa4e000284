@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_home_tools_grids",
+  "info": {
+    "displayName": "tools_grid"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "items": {
+      "type": "component",
+      "component": "home.tool-item",
+      "repeatable": true,
+      "min": 1
+    }
+  },
+  "config": {}
+}
