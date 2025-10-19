@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feature_tags",
+  "info": {
+    "singularName": "feature-tag",
+    "pluralName": "feature-tags",
+    "displayName": "feature_tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description": {
+      "type": "text",
+      "maxLength": 150
+    }
+  }
+}

@@ -16,7 +16,20 @@ export interface ListsListEntry extends Struct.ComponentSchema {
   info: {
     displayName: 'list_entry';
   };
-  attributes: {};
+  attributes: {
+    badge: Schema.Attribute.Enumeration<['Top', 'Nuevo', 'Exclusivo']>;
+    bookmaker: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::bookmaker.bookmaker'
+    >;
+    cta_label: Schema.Attribute.String &
+      Schema.Attribute.DefaultTo<'Ir a la oferta'>;
+    deeplink_override: Schema.Attribute.String;
+    notes_tc: Schema.Attribute.Text;
+    offer_override: Schema.Attribute.Text;
+    pinned: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    secondary_text: Schema.Attribute.Text;
+  };
 }
 
 export interface SharedMedia extends Struct.ComponentSchema {

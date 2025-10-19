@@ -4,6 +4,40 @@
     "displayName": "list_entry"
   },
   "options": {},
-  "attributes": {},
+  "attributes": {
+    "bookmaker": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::bookmaker.bookmaker"
+    },
+    "badge": {
+      "type": "enumeration",
+      "enum": [
+        "Top",
+        "Nuevo",
+        "Exclusivo"
+      ]
+    },
+    "offer_override": {
+      "type": "text"
+    },
+    "secondary_text": {
+      "type": "text"
+    },
+    "notes_tc": {
+      "type": "text"
+    },
+    "cta_label": {
+      "type": "string",
+      "default": "Ir a la oferta"
+    },
+    "deeplink_override": {
+      "type": "string"
+    },
+    "pinned": {
+      "type": "boolean",
+      "default": false
+    }
+  },
   "config": {}
 }
